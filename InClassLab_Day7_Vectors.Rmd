@@ -1,6 +1,6 @@
 ---
 title: "In Class Lab"
-author: "Dr. Shoemaker"
+author: "Lauren Duvall"
 date: "DATA 2401"
 output: html_document
 ---
@@ -45,6 +45,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
+die_rolls <- function() {
+  die_roll <- 1:6
+  die_prob <- c(.15,.15,.15,.15,.15,.15)
+  sample(die_roll, 1, replace = T, prob = die_prob)
+}
+
+die_rolls()
 ```
 
 
@@ -52,7 +59,17 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Write a function to simulate rolling 2 6-sided dice that returns the sum of the rolls. 
 
 ```{r}
-
+both <- function(){
+  die_1 <- 1:6
+  die_2 <- 1:6 
+  die_1_prob <- c(rep(.15,6))
+  die_2_prob <- c(rep(.15,6))
+  comb_prob <- c(die_1_prob, die_2_prob)
+  comb_roll <- c(die_1, die_2)
+  comb_roll
+  sample(comb_roll,1,replace= T, prob=comb_prob)
+}
+both()
 
 ```
 
@@ -61,7 +78,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # Your one-roll function goes here
+higher <- function(name_1, name_2){
+  r1 <- die_rolls()
+  r2 <- die_rolls()
+  
+  if(r1 == r2){
+    r1 <- die_rolls()
+    r2 <- die_rolls()
+  }
+  
+  if(r1>r2){
+    return(name_1)
+  }  else if (r1 == r2){
+    return("draw")
+  } else
+    return(name_2)
+}
 
+
+
+  
+
+
+higher(name_1 = "Lauren",  name_2 = "Kate")
 ```
 
 
@@ -69,6 +108,36 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
+die_roll_15 <- function() {
+  die_roll <- 1:6
+  die_prob <- c(.15,.15,.15,.15,.15,.15)
+  sample(die_roll, 15, replace = T, prob = die_prob)
+}
+
+die_roll_15()
+
+higher <- function(name_1, name_2){
+  r1 <- die_roll_15()
+  r2 <- die_roll_15()
+  
+ num_r1_greater <- length(r1[r1 > r2])
+ num_r2_greater <- length(r2[r2 > r1])
+ 
+ 
+  if(num_r1_greater>num_r2_greater){
+    return(name_1)
+  }  else if (num_r1_greater == num_r2_greater){
+    return("draw")
+  } else
+    return(name_2)
+}
+
+
+
+  
+
+
+higher(name_1 = "Lauren",  name_2 = "Kate")
 
 ```
 
@@ -77,5 +146,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # Your "cheating" function goes here
+die_roll_10 <- function() {
+  die_roll <- 1:6
+  die_prob <- c(.15,.15,.15,.15,.15,.15)
+  sample(die_roll, 1, replace = T, prob = die_prob)
+}
+
+die_roll_10w <- function() {
+  die_roll_10_ <- 1:6
+  die_prob_10 <- c(.1,.1,.1,.3,.3,.3)
+  sample(die_roll_10_ , 1, replace = T, prob = die_prob_10)
+}
+
+die_roll_10w()
+die_roll_10()
 ```
 
